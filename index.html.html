@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Game</title>
+</head>
+<body>
+    <style>
+        * {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	}
+
+body {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 100%;
+	color: #000;
+	background: #fff;
+	}
+
+#wrapper {
+	margin: 20px auto;
+	width: 600px;
+	border: 1px solid #999;
+	padding-bottom: 10px;
+  }
+
+/* heading and text styles */
+
+h1, h2 {
+	font-family: Cambria, Georgia, serif;
+	font-size: 200%;
+	font-weight: normal;
+	padding: 20px;
+	line-height: 1.4em;
+	}
+
+h2 { font-size: 160%; }
+
+p {
+	margin-bottom: 20px;
+	padding: 0 20px;
+	line-height: 1.4em;
+	}
+
+/* links */
+
+a:focus {
+	outline: 2px solid #069;
+	}
+a:link, a:active, a:visited {
+	color: #00c;
+	text-decoration: underline;
+	}
+a:hover {
+	color: #00f;
+	text-decoration: none;
+	}
+
+    </style>
+
+<!-- --------------------------------------- -->
+    <div id="wrapper">
+
+        <h1>Guess the Number</h1>
+        
+        <p>This JavaScript game is played with pop-up alert, confirm, and prompt boxes. It asks you to guess a number randomly selected by the computer. You either win or lose. There are no prizes. (Sorry.)</p>
+        
+        <p><a href="#" onclick="return playGame();">Play the game</a></p>
+        
+        <p>You have three tries.</p>
+        
+        </div>
+        
+  <script>
+        function playGame() {
+	var userInput = confirm("Are you sure you want to play?");
+	if (userInput == 1) {
+		var num = prompt("Type a number from 1 to 10:");
+		if (isNaN(num)) {
+			alert("That is not a number. Goodbye!");
+		} else if (num < 1 || num > 10) {
+			alert("The number must be from 1 to 10. Goodbye!");
+		} else {
+			var guess = 1 + Math.floor(Math.random() * 10);
+			test(num, guess); // function below this
+		}
+	}
+  else {
+		alert("Okay. Goodbye!");
+	}
+}
+
+// test() manages the player's 3 tries
+function test(n, g) {
+	for (i=1; i<4; i++) {
+		if (n == g) {
+			alert("You win! The number was " + g + ".");
+			return;
+		} else if (i == 3) {
+			alert("No more tries for you. The number was " + g + ". You lose!");
+		} else if (n < g) {
+			n = prompt("Too low! You may guess again: ");
+		} else {
+			n = prompt("Too high! You may guess again: ");
+		}
+	}
+}
+
+  </script>
+</body>
+</html>
